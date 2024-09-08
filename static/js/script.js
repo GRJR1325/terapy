@@ -40,7 +40,7 @@
                                       <li class="collection-item"><strong>Causas:</strong> ${data.Causas}</li>
                                       <li class="collection-item"><strong>Síntomas:</strong> ${data.Sintomas}</li>
                                       <li class="collection-item"><strong>Tratamiento:</strong> ${data.Tratamiento}</li>
-                                      <img src="${data.Img}" alt="${data.Img}">
+                                      <img src="${data.Img}" alt="${data.Img}" class="patologia-imagen">  
                                   </ul>
                               `;
                           } else {
@@ -52,4 +52,8 @@
                       resultadosDiv.innerHTML = '<p>Error al obtener los datos. Intenta nuevamente.</p>';
                   }
               }
-        
+
+              function buscarPatologiaPorDefault(nombrePatologia) {
+                document.getElementById('patologia-input').value = nombrePatologia; // Setea el valor en el input
+                buscarPatologia(); // Llama a la función de búsqueda
+            }
