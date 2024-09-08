@@ -66,7 +66,6 @@
         <label for="pathology-name"></label>
         <input type="text" id="patologia-input" placeholder="Ingresa el nombre de la patología">
         <button class="btn" onclick="buscarPatologia()">Buscar</button>
-        
         <div class="spacer" style="height: 50px;"></div>
       
         <!-- Sección para mostrar la información -->
@@ -115,7 +114,7 @@
                   <div class="collection">
                     <a href="#!" class="collection-item">Sindrome Subracromial</a>
                     <a href="#!" class="collection-item">Inestabilidad Glenohumeral</a>
-                    <a href="#!" class="collection-item">Capsulitis Retráctil / Hombro congelado</a>
+                    <a href="#info1" class="collection-item" onclick="buscarPatologiaPorDefault('Capsulitis Retractil')">Capsulitis Retráctil / Hombro congelado</a>
                   </div>
                 </span>
               </div>
@@ -237,7 +236,17 @@
       document.getElementById("myPopup").style.display = "none";
     }
   </script>
-    <script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.materialboxed');
+    var instances = M.Materialbox.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
   </script>
 </body>
 </html>
