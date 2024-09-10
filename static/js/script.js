@@ -57,3 +57,13 @@
                 document.getElementById('patologia-input').value = nombrePatologia; // Setea el valor en el input
                 buscarPatologia(); // Llama a la función de búsqueda
             }
+
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('Service Worker registrado con éxito:', registration);
+                  }, function(err) {
+                    console.log('Registro del Service Worker fallido:', err);
+                  });
+                });
+              }
