@@ -24,10 +24,10 @@
   <!-- BARRA DE NAVEGACION  -->
   <nav>
 
-    <div class="nav-wrapper teal">
-      <a href="#" class="brand-logo center">Patologias</a>
+    <div class="nav-wrapper blue accent-1">
+      <a href="#" class="brand-logo center">DOSSIFISIO</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li>      <a href="#" class="brand-logo"><img width="65px" src="static/images/loge2.webp"></img></a>
+        <li>      <a href="#" class="brand-logo"><img width="65px" style="border-radius: 50%;" src="static/images/index/loge.jpg"></img></a>
         </li>
       </ul>
       <ul class="right hide-on-med-and-down">
@@ -38,127 +38,181 @@
     </div>
 
   </nav>
-    
-  
+
+
   <!-- FOTO PRINCIPAL -->
   <div div style="height: 800px" class="parallax-container">
-  
+
     <div class="parallax">
-      <img class="main-image" src="static/images/terapia3.jpg" />
+      <img class="main-image" src="static/images/index/terapia.jpg" />
     </div>
-    
+
     <div class="rose-overlay center">
-      <h4 class="white-text">Cualquier patologia</h4>
-      <h4 class="white-text" style="font-weight: bold;">tiene un tratamiento para mejorar la calidad de vida</h4>
     </div>
 
   </div>
 
 
   <!-- CONTENEDOR PRINCIPAL  -->
-  <div class="container">   
+  <div class="container">
 
     <div class="row center">
 
-      
-      <!-- TITULO Y BUSQUEDA -->
-      <div class="col s12 m12 l12">
-            
-        <h4 class="teal-text">Encuentra tu Patologia</h4>    
-            
-        <label for="pathology-name"></label>
-        <input type="text" id="patologia-input" placeholder="Ingresa el nombre de la patología">
-        <button class="btn" onclick="buscarPatologia()">Buscar</button>
-        <div class="spacer" style="height: 50px;"></div>
-      
-        <!-- Sección para mostrar la información -->
-        <div id="resultados" class="section"></div>
-      </div>
-      
-          <!-- Sección para mostrar la información del Pokémon -->
-      <div id="result" class="pokemon-info s12 m12 l12"></div>
-      
       <!-- SECCION 1 -->
       <section id="info1">
+        <div class="col 12 m12 l12">
+          <h4 class="blue-text accent-1">¿Que son las Patologias?</h4>
 
-        <h5 class="teal-text">¿Que son las Patologias?</h5>
+          <p class="flow-text">
+            La patología es la rama de la medicina y la biología encargada del estudio de las enfermedades.
+            De forma más específica, esta disciplina se encarga del estudio de los cambios estructurales
+            bioquímicos y funcionales que subyacen a la enfermedad en células, tejidos y órganos.
+          </p>
 
-        <p class="flow-text">
-          La patología es la rama de la medicina y la biología encargada del estudio de las enfermedades.
-          De forma más específica, esta disciplina se encarga del estudio de los cambios estructurales 
-          bioquímicos y funcionales que subyacen a la enfermedad en células, tejidos y órganos.             
-        </p>
-
+        </div>
       </section>
-      
+
       <!-- DIVISOR -->
-      <div class="divider white" style="height: 100px;"></div>
+      <div class="divider white" style="height: 50px;"></div>
 
 
-      <!-- SECCION 2 -->
+      <!-- SECCION 2 PATOLOGIAS -->
       <section id="info2">
 
-        <h5 class="grey-text">Articulaciones y patologias mas comunes</h5>
-        
-        <div class="col s12 l6">                        
-          <img class="responsive-img" src="static/images/patologias-fisioterapia-malaga.jpg">
+        <!-- TITULO -->
+        <div class="col s12 m12 l12">
+          <h4 class="grey-text">PATOLOGIAS</h4>
         </div>
 
-        <!-- COLLAPSIBLE -->
-        <div class="col s12 l6">
-          <ul class="collapsible popout">
-            
-            <li>
+        <br>
+        <br>
 
-              <div class="collapsible-header">Hombro</div>
+        <div class="col s12 m4 l4">
+          
+          <!-- TARJETA 1 TENS -->
+          <div class="card">
 
-              <div class="collapsible-body">
-                <span>
-                  <div class="collection">
-                    <a href="#!" class="collection-item">Sindrome Subracromial</a>
-                    <a href="#!" class="collection-item">Inestabilidad Glenohumeral</a>
-                    <a href="#info1" class="collection-item" onclick="buscarPatologiaPorDefault('Capsulitis Retractil')">Capsulitis Retráctil / Hombro congelado</a>
-                  </div>
-                </span>
-              </div>
-
-            </li>
-
-            <li>
-              
-              <div class="collapsible-header">Codo</div>
-              
-              <div class="collapsible-body">
-                <span>
-                  <div class="collection">
-                    <a href="#!" class="collection-item">Epicondilitis</a>
-                    <a href="#!" class="collection-item">Bursitis</a>
-                  </div>
-                </span>
-              </div>
-
-            </li>
-
-            <li>
-              
-              <div class="collapsible-header">Pie</div>
-              
-              <div class="collapsible-body">
-                <span>
-                  <div class="collection">
-                    <a href="#!" class="collection-item">Neuroma de Morton</a>
-                    <a href="#!" class="collection-item">Fascitis plantar</a>
-                  </div>
-                </span>
-              </div>
-            </li>
-               
+            <!-- IMAGEN TARJETA -->
+            <div class="card-image">
+              <img src="static/images/index/tens.png" height="250px">
+              <span class="card-title">Tens</span>
             </div>
 
+            <!-- CONTENIDO TARJETA -->
+            <div class="card-content">
+              <p>Consiste en aplicar corriente eléctrica a través de parches autoadhesivos para reducir el dolor</p>
+                <div class="collection">
+                  <a onclick="irADetalle('Esguince de Tercer Grado')" class="collection-item">Esguince de Tercer Grado</a>
+                  <a href="#!" class="collection-item">Dolor Lumbar Cronico</a>
+                  <a href="#!" class="collection-item">Fibromialgia</a>
+                </div>
+            </div>
+            
+          </div>
 
-        </section>
+        </div>
+
+        <div class="col s12 m4 l4">
+
+          <!-- TARJETA 2 ONDAS DE CHOQUE-->
+          <div class="card">
+
+            <!-- IMAGEN TARJETA -->
+            <div class="card-image">
+              <img src="static/images/index/ondas.png" height="250px">
+              <span class="card-title">Ondas de choque radiales</span>
+            </div>
+
+            <!-- CONTENIDO TARJETA -->
+            <div class="card-content">
+              <p>Consiste en aplicar ondas sonoras de alta energía en los tejidos musculoesqueléticos y puntos dolorosos</p>
+                <div class="collection">
+                  <a href="#!" class="collection-item">Bursitis Trocanterica</a>
+                  <a href="#!" class="collection-item">Tendinitis del Supraespinoso</a>
+                  <a href="#!" class="collection-item">Epicondilitis</a>
+                </div>
+            </div>
+            
+          </div>
+
+        </div>
+
+        <div class="col s12 m4 l4">
+          
+          <!-- TARJETA 3 INTERFERENCIALES -->
+          <div class="card">
+
+              <!-- IMAGEN TARJETA -->
+              <div class="card-image">
+                <img src="static/images/index/interferenciales.png" height="250px">
+                <span class="card-title">Interferenciales</span>
+              </div>
+
+              <!-- CONTENIDO TARJETA -->
+              <div class="card-content">
+                <p>Técnica avanzada en el campo de la fisioterapia que permite tratar el dolor muscular y articular de forma efectiva.</p>
+                  <div class="collection">
+                    <a href="#!" class="collection-item">Lumbalgia</a>
+                    <a href="#!" class="collection-item">Cefalea Tensional Cronica</a>
+                    <a href="#!" class="collection-item">Cervicalgia Mecanica</a>
+                  </div>
+              </div>
+              
+          </div>
+
+        </div>
+
+        <div class="col s12 m4 l4 offset-l1 offset-m1">
+          
+          <!-- TARJETA 4 LASER -->
+          <div class="card">
+
+              <!-- IMAGEN TARJETA -->
+              <div class="card-image">
+                <img src="static/images/index/laser.jpg" height="250px">
+                <span class="card-title">Laser</span>
+              </div>
+
+              <!-- CONTENIDO TARJETA -->
+              <div class="card-content">
+                <p>Uso de radiación láser para reparar tejidos, aliviar el dolor y mejorar la condición de zonas neurálgicas de la piel.</p>
+                  <div class="collection">
+                    <a href="#!" class="collection-item">Osteoartritis de Rodilla</a>
+                    <a href="#!" class="collection-item">Tendinopatia Aquilea</a>
+                    <a href="#!" class="collection-item">Paralisis de Bell</a>
+                  </div>
+              </div>
+              
+          </div>
+
+        </div>
+        <div class="col s12 m4 l4 offset-l1 offset-m1">
+          
+          <!-- TARJETA 5 ULTRASONIDO -->
+          <div class="card">
+
+              <!-- IMAGEN TARJETA -->
+              <div class="card-image">
+                <img src="static/images/index/ultrasonido.png" height="250px">
+                <span class="card-title">Ultrasonido</span>
+              </div>
+
+              <!-- CONTENIDO TARJETA -->
+              <div class="card-content">
+                <p>Forma de tratamiento de fisioterapia que utiliza ondas sonoras con una frecuencia más alta que nuestro umbral de audición.</p>
+                  <div class="collection">
+                    <a href="#!" class="collection-item">Fasciopatia Plantar</a>
+                    <a href="#!" class="collection-item">Consolidacion Ósea</a>
+                    <a href="#!" class="collection-item">Espaticidad del Miembro Superior </a>
+                  </div>
+              </div>
+              
+          </div>
+
+        </div>
+
+      </section>
   </div>
-
 </div>
 
   <footer class="page-footer teal">
@@ -182,26 +236,32 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      © 2024 Copyright Text 
+      © 2024 Copyright Text
       </div>
     </div>
-  </footer>  
+  </footer>
 
-    <!-- Firebase Configuración -->
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database-compat.js"></script>
+  <!-- Firebase Configuración -->
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database-compat.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="static/js/materialize.min.js"></script>
   <script src="static/js/script.js"></script>
   <script>
-            document.addEventListener('DOMContentLoaded', function() {
-            const elems = document.querySelectorAll('.collapsible');
-            const instances = M.Collapsible.init(elems, {
-                accordion: true  // Esto asegura que se comporte como un acordeón
-            });
-        });
-  
+    function irADetalle(nombrePatologia) {
+      // Redirigir a detalle.html con el nombre de la patología como parámetro en la URL
+      window.location.href = `patologyDetails.html?patologia=${encodeURIComponent(nombrePatologia)}`;
+    }
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const elems = document.querySelectorAll('.collapsible');
+    const instances = M.Collapsible.init(elems, {
+        accordion: true  // Esto asegura que se comporte como un acordeón
+    });
+    });
+
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".parallax");
       var instances = M.Parallax.init(elems, {});

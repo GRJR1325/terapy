@@ -1,4 +1,4 @@
-      // Configuración Firebase (Sustituye con tus datos)
+      // Configuración de Firebase
       const firebaseConfig = {
         apiKey: "AIzaSyBJZP8IVUfAIW4WQW4P2aRW1PEI7SVvp_g",
         authDomain: "terapy-e10d1.firebaseapp.com",
@@ -7,63 +7,64 @@
         storageBucket: "terapy-e10d1.appspot.com",
         messagingSenderId: "585078394619",
         appId: "1:585078394619:web:53f8bed6d0e27b3563ea5e"
-        };
-        
-              // Inicializar Firebase
-              const app = firebase.initializeApp(firebaseConfig);
-              const db = firebase.database();
-        
-              // Función para buscar la patología en Firebase
-              async function buscarPatologia() {
-                  const patologiaNombre = document.getElementById('patologia-input').value.trim();
-                  const resultadosDiv = document.getElementById('resultados');
-                  resultadosDiv.innerHTML = ''; // Limpiar resultados previos
-        
-                  if (!patologiaNombre) {
-                      resultadosDiv.innerHTML = '<p>Por favor ingresa un nombre de patología</p>';
-                      return;
-                  }
-        
-                  try {
-                      const patologiaRef = firebase.database().ref(patologiaNombre);
-        
-                      // Usamos 'once' para obtener los datos una vez
-                      patologiaRef.once('value', (snapshot) => {
-                          if (snapshot.exists()) {
-                              const data = snapshot.val();
-        
-                              // Mostrar la información de la patología
-                              resultadosDiv.innerHTML = `
-                                  <h5>${patologiaNombre}</h5>
-                                  <ul class="collection">
-                                      <li class="collection-item"><strong>Definición:</strong> ${data.Definicion}</li>
-                                      <li class="collection-item"><strong>Causas:</strong> ${data.Causas}</li>
-                                      <li class="collection-item"><strong>Síntomas:</strong> ${data.Sintomas}</li>
-                                      <li class="collection-item"><strong>Tratamiento:</strong> ${data.Tratamiento}</li>
-                                      <img src="${data.Img}" alt="${data.Img}" class="patologia-imagen">  
-                                  </ul>
-                              `;
-                          } else {
-                              resultadosDiv.innerHTML = `<p>No se encontró información para la patología "${patologiaNombre}".</p>`;
-                          }
-                      });
-                  } catch (error) {
-                      console.error('Error al buscar la patología:', error);
-                      resultadosDiv.innerHTML = '<p>Error al obtener los datos. Intenta nuevamente.</p>';
-                  }
-              }
+    };
 
-              function buscarPatologiaPorDefault(nombrePatologia) {
-                document.getElementById('patologia-input').value = nombrePatologia; // Setea el valor en el input
-                buscarPatologia(); // Llama a la función de búsqueda
-            }
+    // Inicializar Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('Service Worker registrado con éxito:', registration);
-                  }, function(err) {
-                    console.log('Registro del Service Worker fallido:', err);
-                  });
-                });
-              }
+    // Obtener el parámetro 'patologia' de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const nombrePatologia = urlParams.get('patologia');
+
+    if (nombrePatologia) {
+        document.getElementById('titulo-patologia').innerText = nombrePatologia;
+
+        // Referencia a la patología en Firebase
+        const patologiaRef = db.ref(nombrePatologia);
+
+        patologiaRef.once('value').then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+
+            // Mostrar datos
+            document.getElementById('definicion').innerText = data.Definicion || 'No disponible';
+
+            const factoresList = document.getElementById('factores-de-riesgo');
+            (data.Factores_de_Riesgo || '').split(',').forEach(factor => {
+              const li = document.createElement('li');
+              li.innerText = factor.trim();
+              factoresList.appendChild(li);
+            });
+
+            const sintomasList = document.getElementById('sintomas');
+            (data.Sintomas || '').split(',').forEach(sintoma => {
+              const li = document.createElement('li');
+              li.innerText = sintoma.trim();
+              sintomasList.appendChild(li);
+            });
+
+            const tratamientoList = document.getElementById('tratamiento');
+            (data.Tratamiento || '').split(',').forEach(tratamiento => {
+              const li = document.createElement('li');
+              li.innerText = tratamiento.trim();
+              tratamientoList.appendChild(li);
+            });
+
+            // Actualizar las imágenes dinámicamente con las URLs
+            const imagen1 = document.getElementById('imagen1');
+            imagen1.src = data.Image1 || ''; // Si no hay imagen, dejar vacío
+
+            const imagen2 = document.getElementById('imagen2');
+            imagen2.src = data.Image2 || ''; // Si no hay imagen, dejar vacío
+
+          } else {
+            document.getElementById('titulo-patologia').innerText = 'Patología no encontrada';
+          }
+        }).catch((error) => {
+          console.error('Error al cargar la patología:', error);
+          document.getElementById('titulo-patologia').innerText = 'Error al cargar los datos';
+        });
+      } else {
+        document.getElementById('titulo-patologia').innerText = 'No se proporcionó ninguna patología';
+      }
