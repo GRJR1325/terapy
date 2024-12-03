@@ -18,34 +18,35 @@
     const nombrePatologia = urlParams.get('patologia');
 
     if (nombrePatologia) {
-        document.getElementById('titulo-patologia').innerText = nombrePatologia;
-
+        // document.getElementById('titulo-patologia').innerText = nombrePatologia;
+        
         // Referencia a la patología en Firebase
         const patologiaRef = db.ref(nombrePatologia);
-
+        
         patologiaRef.once('value').then((snapshot) => {
           if (snapshot.exists()) {
             const data = snapshot.val();
-
+            
             // Mostrar datos
+            document.getElementById('titulo-patologia').innerText = data.Titulo || 'No disponible';
             document.getElementById('definicion').innerText = data.Definicion || 'No disponible';
 
             const factoresList = document.getElementById('factores-de-riesgo');
-            (data.Factores_de_Riesgo || '').split(',').forEach(factor => {
+            (data.Factores_de_Riesgo || '').split('|').forEach(factor => {
               const li = document.createElement('li');
               li.innerText = factor.trim();
               factoresList.appendChild(li);
             });
 
             const sintomasList = document.getElementById('sintomas');
-            (data.Sintomas || '').split(',').forEach(sintoma => {
+            (data.Sintomas || '').split('|').forEach(sintoma => {
               const li = document.createElement('li');
               li.innerText = sintoma.trim();
               sintomasList.appendChild(li);
             });
 
             const tratamientoList = document.getElementById('tratamiento');
-            (data.Tratamiento || '').split(',').forEach(tratamiento => {
+            (data.Tratamiento || '').split('|').forEach(tratamiento => {
               const li = document.createElement('li');
               li.innerText = tratamiento.trim();
               tratamientoList.appendChild(li);
@@ -53,11 +54,18 @@
 
             // Actualizar las imágenes dinámicamente con las URLs
             const imagen1 = document.getElementById('imagen1');
-            imagen1.src = data.Image1 || ''; // Si no hay imagen, dejar vacío
+            if (data.Image1) {
+              imagen1.src = data.Image1;
+            } else {
+              imagen1.style.display = 'none'; // Ocultar si no hay imagen
+            }
 
             const imagen2 = document.getElementById('imagen2');
-            imagen2.src = data.Image2 || ''; // Si no hay imagen, dejar vacío
-
+            if (data.Image2) {
+              imagen2.src = data.Image2;
+            } else {
+              imagen2.style.display = 'none'; // Ocultar si no hay imagen
+            }
           } else {
             document.getElementById('titulo-patologia').innerText = 'Patología no encontrada';
           }
